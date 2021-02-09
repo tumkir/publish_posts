@@ -61,5 +61,4 @@ def parse_args():
 if __name__ == '__main__':
     load_dotenv()
     args = parse_args()
-    message_text, image_path = args.message_text, args.image_path
-    post_everywhere(message_text, image_path)
+    post_everywhere(args.message_text, args.image_path)
