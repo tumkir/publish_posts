@@ -28,7 +28,8 @@ def post_vkontakte(message_text, image_path, vk_token, vk_album_id, vk_group_id)
 
 def post_telegram(message_text, image_path, tg_token, tg_channel_id):
     bot = telegram.Bot(tg_token)
-    bot.send_photo(chat_id=tg_channel_id, photo=open(image_path, 'rb'))
+    with open(image_path, 'rb') as image:
+        bot.send_photo(chat_id=tg_channel_id, photo=image)
     bot.send_message(chat_id=tg_channel_id, text=message_text)
 
 
@@ -60,7 +61,6 @@ def parse_args():
 
 if __name__ == '__main__':
     load_dotenv()
-
     vk_token = os.getenv('VK_TOKEN')
     vk_group_id = int(os.getenv('VK_GROUP_ID'))
     vk_album_id = os.getenv('VK_ALBUM_ID')
